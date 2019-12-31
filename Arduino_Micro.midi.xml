@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<MixxxControllerPreset schemaVersion="1" mixxxVersion="">
+    <info/>
+    <controller id="Arduino">
+        <scriptfiles/>
+        <controls>
+            <control>
+                <group>[Library]</group>
+                <key>MoveUp</key>
+                <description>MIDI Learned from 2 messages.</description>
+                <status>0x9A</status>
+                <midino>0x02</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+        </controls>
+        <outputs/>
+    </controller>
+</MixxxControllerPreset>
