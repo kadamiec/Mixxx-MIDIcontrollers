@@ -78,6 +78,7 @@ TraktorS2MK2.registerInputPackets = function() {
   // "[Channel1]" and "[Channel2]" refer to the left deck or right deck, and may be Channel1 or 3 depending
   // on the deck switch state.  These are keywords in the HID library.
 
+  // DECK 1:
   this.registerInputButton(MessageShort, "[Channel1]", "!play", 0x0B, 0x01, this.playHandler);
   this.registerInputButton(MessageShort, "[Channel2]", "!play", 0x09, 0x01, this.playHandler);
 
@@ -85,7 +86,8 @@ TraktorS2MK2.registerInputPackets = function() {
   this.registerInputButton(MessageShort, "[Channel2]", "!cue_default", 0x09, 0x02, this.cueHandler);
 
 
-  MessageShort.addControl("[Channel1]", "shift", 0x0B, "B", 0x08);
+  //MessageShort.addControl("[Channel1]", "shift", 0x0B, "B", 0x08);
+  this.registerInputButton(MessageShort, "[Channel1]", "!shift", 0x0B, 0x08, this.shiftHandler);
   MessageShort.addControl("[Channel1]", "sync_enabled", 0x0B, "B", 0x04);
   //MessageShort.addControl("[Channel1]", "!cue_default", 0x0B, "B", 0x02);
   //MessageShort.addControl("[Channel1]", "play", 0x0B, "B", 0x01);
@@ -117,7 +119,10 @@ TraktorS2MK2.registerInputPackets = function() {
   //MessageShort.addControl("[Channel1]", "!FX3", 0x0E, "B", 0x40);
 
 
-  MessageShort.addControl("[Channel2]", "!shift", 0x09, "B", 0x08);
+  // DECK 2:
+  //MessageShort.addControl("[Channel2]", "!shift", 0x09, "B", 0x08);
+  this.registerInputButton(MessageShort, "[Channel2]", "!shift", 0x09, 0x88, this.shiftHandler);
+  
   MessageShort.addControl("[Channel2]", "!sync_enabled", 0x09, "B", 0x04);
   //MessageShort.addControl("[Channel2]", "!cue_default", 0x09, "B", 0x02);
   //MessageShort.addControl("[Channel2]", "!play", 0x09, "B", 0x01);
