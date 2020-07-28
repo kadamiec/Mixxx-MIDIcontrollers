@@ -102,7 +102,7 @@ HIDModifierList.prototype.get = function(name) {
 /** Set modifier callback (update function after modifier state changes) */
 HIDModifierList.prototype.setCallback = function(name, callback) {
     if ((!name in this.modifiers)) {
-        HIDDebug("Unknown modifier: " + name);
+        HIDDebug("Unknonwn modifier: " + name)
         return
     }
     this.callbacks[name] = callback
@@ -632,7 +632,7 @@ HIDPacket.prototype.parse = function(data) {
                     field.delta = value - field.value
                 }
                 if (field.mindelta == undefined || change > field.mindelta) {
-                    field_changes[field.id] = field
+                    field_changes[field.name] = field
                     field.value = value
                 }
             }
@@ -1261,7 +1261,7 @@ HIDController.prototype.togglePlay = function(group, field) {
  *
  * Enabling scratching (press 'jog_touch' button)
  * Sets the internal 'isScratchEnabled' attribute to true, and calls scratchEnable
- * with the scratch attributes (see class definition)
+ * with the scratch attributes (see class defination)
  *
  * Disabling scratching (release 'jog_touch' button)
  * Sets the internal 'isScratchEnabled attribute to false, and calls scratchDisable

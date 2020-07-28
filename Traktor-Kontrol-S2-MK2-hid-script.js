@@ -68,14 +68,19 @@ TraktorS2MK2 = new function() {
 }
 
 TraktorS2MK2.registerInputPackets = function() {
-  MessageShort = new HIDPacket("shortmessage", [0x01], 17, this.shortMessageCallback);
-  MessageLong = new HIDPacket("longmessage", [0x02], 51, this.longMessageCallback);
+  MessageShort = new HIDPacket("shortmessage", 0x01, this.shortMessageCallback);
+  MessageLong = new HIDPacket("longmessage", 0x02, this.longMessageCallback);
 
   // Values in the short message are all buttons, except the jog wheels.
   // An exclamation point indicates a specially-handled function.  Everything else is a standard
   // Mixxx control object name.
   // "[Channel1]" and "[Channel2]" refer to the left deck or right deck, and may be Channel1 or 3 depending
   // on the deck switch state.  These are keywords in the HID library.
+
+  MessageShort.addControl("[Channel1]", "!play", 0x1C, "B", 0x0 );
+  MessageShort.addControl("[Channel1]", "!play", 0x1, "B", 0x1C);
+
+
   MessageShort.addControl("[EffectRack1_EffectUnit1_Effect1]", "enabled", 0x0E, "B", 0x80);
   MessageShort.addControl("[EffectRack1_EffectUnit1_Effect2]", "enabled", 0x0E, "B", 0x40);
   MessageShort.addControl("[EffectRack1_EffectUnit1_Effect3]", "enabled", 0x0E, "B", 0x20);
@@ -103,12 +108,12 @@ TraktorS2MK2.registerInputPackets = function() {
   MessageShort.addControl("[Playlist]", "LoadSelectedIntoFirstStopped", 0x13, "B", 0x04);
   MessageShort.addControl("[Preview[Channel1]]", "!previewdeck", 0x0F, "B", 0x01);
 
-  MessageShort.addControl("[Master]", "!quantize", 0x0A, "B", 0x08);
+  //#MessageShort.addControl("[Master]", "!quantize", 0x0A, "B", 0x08);
 
 
 
 
-  MessageShort.setCallback("[Master]", "!quantize", this.quantizeHandler);
+  //#MessageShort.setCallback("[Master]", "!quantize", this.quantizeHandler);
   // TODO: the rest of the "!" controls.
   this.controller.registerInputPacket(MessageShort);
 
@@ -176,8 +181,8 @@ TraktorS2MK2.registerInputPackets = function() {
 }
 
 TraktorS2MK2.registerOutputPackets = function() {
-  Output1 = new HIDPacket("output1", [0x80], 38);
-  Output2 = new HIDPacket("output2", [0x81], 33);
+  Output1 = new HIDPacket("output1", [0x80]);
+  Output2 = new HIDPacket("output2", [0x81]);
   
   //Output1.addOutput("[Channel1]", "track_samples", 0x10, "B");
   //Output1.addOutput("[Channel2]", "track_samples", 0x18, "B");
@@ -206,10 +211,10 @@ TraktorS2MK2.registerOutputPackets = function() {
   Output1.addOutput("[Master]", "!usblight", 0x1D, "B");
   Output1.addOutput("[Channel2]", "pfl", 0x1F, "B");
 
-  Output1.addOutput("[EffectRack1_EffectUnit1]", "group_[Channel1]_enable", 0x0F, "B");
-  Output1.addOutput("[EffectRack1_EffectUnit2]", "group_[Channel1]_enable", 0x10, "B");
-  Output1.addOutput("[EffectRack1_EffectUnit1]", "group_[Channel2]_enable", 0x11, "B");
-  Output1.addOutput("[EffectRack1_EffectUnit2]", "group_[Channel2]_enable", 0x12, "B");
+  //#Output1.addOutput("[EffectRack1_EffectUnit1]", "group_[Channel1]_enable", 0x0F, "B");
+  //#Output1.addOutput("[EffectRack1_EffectUnit2]", "group_[Channel1]_enable", 0x10, "B");
+  //#Output1.addOutput("[EffectRack1_EffectUnit1]", "group_[Channel2]_enable", 0x11, "B");
+  //#Output1.addOutput("[EffectRack1_EffectUnit2]", "group_[Channel2]_enable", 0x12, "B");
   
   //
   //Output1.addOutput("[Master]", "!quantize", 0x31, "B");
@@ -221,6 +226,7 @@ TraktorS2MK2.registerOutputPackets = function() {
   Output2.addOutput("[Channel1]", "sync_enabled", 0x1A, "B");
   Output2.addOutput("[Channel1]", "cue_indicator", 0x1B, "B");
   Output2.addOutput("[Channel1]", "play_indicator", 0x1C, "B");
+  Output2.addOutput("[Channel2]", "hotcue_1_enabled", 0x01, "B");
   Output2.addOutput("[Channel1]", "!hotcue_1_enabled_G", 0x02, "B");
   Output2.addOutput("[Channel1]", "!hotcue_1_enabled_B", 0x03, "B");
   Output2.addOutput("[Channel1]", "hotcue_2_enabled", 0x04, "B");
@@ -281,27 +287,27 @@ TraktorS2MK2.registerOutputPackets = function() {
   TraktorS2MK2.linkDeckOutputs("hotcue_4_enabled", TraktorS2MK2.outputCueCallback);
   TraktorS2MK2.linkDeckOutputs("loop_in", TraktorS2MK2.outputCallbackLoop);
   TraktorS2MK2.linkDeckOutputs("loop_out", TraktorS2MK2.outputCallbackLoop);
-  TraktorS2MK2.linkDeckOutputs("keylock", TraktorS2MK2.outputCallbackDark);
-  TraktorS2MK2.linkDeckOutputs("LoadSelectedTrack", TraktorS2MK2.outputCallback);
-  TraktorS2MK2.linkDeckOutputs("slip_enabled", TraktorS2MK2.outputCallback);
+  //#TraktorS2MK2.linkDeckOutputs("keylock", TraktorS2MK2.outputCallbackDark);
+  //#TraktorS2MK2.linkDeckOutputs("LoadSelectedTrack", TraktorS2MK2.outputCallback);
+  //#TraktorS2MK2.linkDeckOutputs("slip_enabled", TraktorS2MK2.outputCallback);
   TraktorS2MK2.linkChannelOutput("[Channel1]", "pfl", TraktorS2MK2.outputChannelCallback);
   TraktorS2MK2.linkChannelOutput("[Channel2]", "pfl", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[Channel1]", "track_samples", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[Channel2]", "track_samples", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[Channel1]", "track_samples", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[Channel2]", "track_samples", TraktorS2MK2.outputChannelCallback);
   TraktorS2MK2.linkChannelOutput("[Channel1]", "PeakIndicator", TraktorS2MK2.outputChannelCallbackDark);
   TraktorS2MK2.linkChannelOutput("[Channel2]", "PeakIndicator", TraktorS2MK2.outputChannelCallbackDark);
-  TraktorS2MK2.linkChannelOutput("[Master]", "PeakIndicatorL", TraktorS2MK2.outputChannelCallbackDark);
-  TraktorS2MK2.linkChannelOutput("[Master]", "PeakIndicatorR", TraktorS2MK2.outputChannelCallbackDark);
-  TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1]", "group_[Channel1]_enable", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit2]", "group_[Channel1]_enable", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1]", "group_[Channel2]_enable", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit2]", "group_[Channel2]_enable", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1_Effect1]", "enabled", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[Master]", "PeakIndicatorL", TraktorS2MK2.outputChannelCallbackDark);
+  //#TraktorS2MK2.linkChannelOutput("[Master]", "PeakIndicatorR", TraktorS2MK2.outputChannelCallbackDark);
+  //#TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1]", "group_[Channel1]_enable", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit2]", "group_[Channel1]_enable", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1]", "group_[Channel2]_enable", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit2]", "group_[Channel2]_enable", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1_Effect1]", "enabled", TraktorS2MK2.outputChannelCallback);
 
-  TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1]", "next_chain", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit2]", "next_chain", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[Preview[Channel1]]", "play_indicator", TraktorS2MK2.outputChannelCallback);
-  TraktorS2MK2.linkChannelOutput("[InternalClock]", "sync_master", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit1]", "next_chain", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[EffectRack1_EffectUnit2]", "next_chain", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[Preview[Channel1]]", "play_indicator", TraktorS2MK2.outputChannelCallback);
+  //#TraktorS2MK2.linkChannelOutput("[InternalClock]", "sync_master", TraktorS2MK2.outputChannelCallback);
 
   // VU meters get special attention
   engine.connectControl("[Channel1]", "VuMeter", "TraktorS2MK2.onVuMeterChanged");
@@ -397,7 +403,7 @@ TraktorS2MK2.init = function(id) {
   TraktorS2MK2.master_quantize = engine.getValue("[Channel1]", "quantize");
   engine.setValue("[Channel1]", "quantize", TraktorS2MK2.master_quantize);
   engine.setValue("[Channel2]", "quantize", TraktorS2MK2.master_quantize);
-  TraktorS2MK2.controller.setOutput("[Master]", "!quantize", 0x7F * TraktorS2MK2.master_quantize, true);
+  //#TraktorS2MK2.controller.setOutput("[Master]", "!quantize", 0x7F * TraktorS2MK2.master_quantize, true);
 
   TraktorS2MK2.controller.setOutput("[Master]", "!usblight", 0x7F, true);
   TraktorS2MK2.outputChannelCallback(engine.getValue("[InternalClock]", "sync_master"), "[InternalClock]", "sync_master");
