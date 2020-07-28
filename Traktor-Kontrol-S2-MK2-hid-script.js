@@ -25,6 +25,7 @@ PlayCueDark = false;
 TraktorS2MK2 = new function() {
   this.controller = new HIDController();
   // TODO: Decide if these should be part of this.controller instead.
+
   this.partial_packet = Object();
   this.divisor_map = Object();
   this.ShiftCueButtonAction = ShiftCueButtonAction;
@@ -77,8 +78,71 @@ TraktorS2MK2.registerInputPackets = function() {
   // "[Channel1]" and "[Channel2]" refer to the left deck or right deck, and may be Channel1 or 3 depending
   // on the deck switch state.  These are keywords in the HID library.
 
-  MessageShort.addControl("[Channel1]", "!play", 0x1C, "B", 0x0 );
-  MessageShort.addControl("[Channel1]", "!play", 0x1, "B", 0x1C);
+  this.registerInputButton(MessageShort, "[Channel1]", "!play", 0x0B, 0x01, this.playHandler);
+  this.registerInputButton(MessageShort, "[Channel2]", "!play", 0x09, 0x01, this.playHandler);
+
+  this.registerInputButton(MessageShort, "[Channel1]", "!cue_default", 0x0B, 0x02, this.cueHandler);
+  this.registerInputButton(MessageShort, "[Channel2]", "!cue_default", 0x09, 0x02, this.cueHandler);
+
+
+  MessageShort.addControl("[Channel1]", "shift", 0x0B, "B", 0x08);
+  MessageShort.addControl("[Channel1]", "sync_enabled", 0x0B, "B", 0x04);
+  //MessageShort.addControl("[Channel1]", "!cue_default", 0x0B, "B", 0x02);
+  //MessageShort.addControl("[Channel1]", "play", 0x0B, "B", 0x01);
+  //MessageShort.addControl("[Channel1]", "!hotcue1", 0x0B, "B", 0x80);
+  //MessageShort.addControl("[Channel1]", "!hotcue2", 0x0B, "B", 0x40);
+  //MessageShort.addControl("[Channel1]", "!hotcue3", 0x0B, "B", 0x20);
+  //MessageShort.addControl("[Channel1]", "!hotcue4", 0x0B, "B", 0x10);
+
+  this.registerInputButton(MessageShort, "[Channel1]", "!hotcue1", 0x0B, 0x80, this.hotcueHandler);
+  this.registerInputButton(MessageShort, "[Channel1]", "!hotcue2", 0x0B, 0x40, this.hotcueHandler);
+  this.registerInputButton(MessageShort, "[Channel1]", "!hotcue3", 0x0B, 0x20, this.hotcueHandler);
+  this.registerInputButton(MessageShort, "[Channel1]", "!hotcue4", 0x0B, 0x10, this.hotcueHandler);
+
+  MessageShort.addControl("[Channel1]", "loop_out", 0x0C, "B", 0x80);
+  MessageShort.addControl("[Channel1]", "loop_in", 0x0C, "B", 0x40);
+
+  //MessageShort.addControl("[Channel1]", "slip_enabled", 0x0E, "B", 0x02);
+  //MessageShort.addControl("[Channel1]", "!reset", 0x0E, "B", 0x01);
+  MessageShort.addControl("[Channel1]", "beatloop_activate", 0x0F, "B", 0x02);
+  MessageShort.addControl("[Channel1]", "loop_activate", 0x0F, "B", 0x01);
+  
+  
+  MessageShort.addControl("[Channel1]", "!jog_wheel", 0x01, "I");
+  MessageShort.addControl("[Channel1]", "jog_touch", 0x0A, "B", 0x01);
+  MessageShort.setCallback("[Channel1]", "!jog_wheel", this.jogMoveHandler);
+  MessageShort.addControl("[Channel1]", "LoadSelectedTrack", 0x0C, "B", 0x08);
+  //MessageShort.addControl("[Channel1]", "!FX1", 0x0E, "B", 0x10);
+  //MessageShort.addControl("[Channel1]", "!FX2", 0x0E, "B", 0x80);
+  //MessageShort.addControl("[Channel1]", "!FX3", 0x0E, "B", 0x40);
+
+
+  MessageShort.addControl("[Channel2]", "!shift", 0x09, "B", 0x08);
+  MessageShort.addControl("[Channel2]", "!sync_enabled", 0x09, "B", 0x04);
+  //MessageShort.addControl("[Channel2]", "!cue_default", 0x09, "B", 0x02);
+  //MessageShort.addControl("[Channel2]", "!play", 0x09, "B", 0x01);
+  MessageShort.addControl("[Channel2]", "!hotcue1", 0x09, "B", 0x80);
+  MessageShort.addControl("[Channel2]", "!hotcue2", 0x09, "B", 0x40);
+  MessageShort.addControl("[Channel2]", "!hotcue3", 0x09, "B", 0x20);
+  MessageShort.addControl("[Channel2]", "!hotcue4", 0x09, "B", 0x10);
+  MessageShort.addControl("[Channel2]", "loop_out", 0x0A, "B", 0x80);
+  MessageShort.addControl("[Channel2]", "loop_in", 0x0A, "B", 0x40);
+  //MessageShort.addControl("[Channel2]", "slip_enabled", 0x0B, "B", 0x02);
+  //MessageShort.addControl("[Channel2]", "!reset", 0x0B, "B", 0x01);
+  MessageShort.addControl("[Channel2]", "beatloop_activate", 0x0F, "B", 0x10);
+  MessageShort.addControl("[Channel2]", "!loop_activate", 0x0F, "B", 0x08);
+  MessageShort.addControl("[Channel2]", "jog_touch", 0x0A, "B", 0x02);
+  MessageShort.addControl("[Channel2]", "!jog_wheel", 0x05, "I");
+  MessageShort.setCallback("[Channel2]", "!jog_wheel", this.jogMoveHandler);
+
+
+  MessageShort.addControl("[Channel2]", "LoadSelectedTrack", 0x0C, "B", 0x04);
+  //MessageShort.addControl("[Channel2]", "!FX1", 0x0D, "B", 0x04);
+  //MessageShort.addControl("[Channel2]", "!FX2", 0x0D, "B", 0x20);
+  //MessageShort.addControl("[Channel2]", "!FX3", 0x0D, "B", 0x10);
+  //MessageShort.addControl("[Channel2]", "!FX4", 0x0D, "B", 0x08);
+
+
 
 
   MessageShort.addControl("[EffectRack1_EffectUnit1_Effect1]", "enabled", 0x0E, "B", 0x80);
@@ -109,7 +173,6 @@ TraktorS2MK2.registerInputPackets = function() {
   MessageShort.addControl("[Preview[Channel1]]", "!previewdeck", 0x0F, "B", 0x01);
 
   //#MessageShort.addControl("[Master]", "!quantize", 0x0A, "B", 0x08);
-
 
 
 
@@ -1015,3 +1078,20 @@ TraktorS2MK2.onLoopEnabledChanged = function(value, group, key) {
   TraktorS2MK2.outputCallbackLoop(value, group, "loop_in");
   TraktorS2MK2.outputCallbackLoop(value, group, "loop_out");
 }
+
+
+TraktorS2MK2.registerInputJog = function (message, group, name, offset, bitmask, callback) {
+  // Jog wheels have 4 byte input
+  message.addControl(group, name, offset, "I", bitmask);
+  message.setCallback(group, name, callback);
+};
+
+TraktorS2MK2.registerInputScaler = function (message, group, name, offset, bitmask, callback) {
+  message.addControl(group, name, offset, "H", bitmask);
+  message.setCallback(group, name, callback);
+};
+
+TraktorS2MK2.registerInputButton = function (message, group, name, offset, bitmask, callback) {
+  message.addControl(group, name, offset, "B", bitmask);
+  message.setCallback(group, name, callback);
+};
