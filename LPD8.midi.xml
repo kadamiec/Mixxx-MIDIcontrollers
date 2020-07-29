@@ -9,46 +9,6 @@
         <scriptfiles/>
         <controls>
             <control>
-                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
-                <key>parameter3</key>
-                <description>G: EQ High</description>
-                <status>0xB0</status>
-                <midino>0x08</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>cue_default</key>
-                <description>CC: CUE</description>
-                <status>0xB0</status>
-                <midino>0x10</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>reverse</key>
-                <description>CC: Reverse</description>
-                <status>0xB0</status>
-                <midino>0x0B</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>rate_temp_up_small</key>
-                <description>PAD: PitchBend+</description>
-                <status>0x90</status>
-                <midino>0x08</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel1]</group>
                 <key>beats_translate_later</key>
                 <description>CC: BeatGrid+</description>
@@ -59,11 +19,81 @@
                 </options>
             </control>
             <control>
-                <group>[Channel1]</group>
-                <key>LoadSelectedTrack</key>
-                <description>CC: LoadTrack</description>
+                <group>[QuickEffectRack1_[Channel1]]</group>
+                <key>super1</key>
+                <description>G: Filter Super Knob</description>
                 <status>0xB0</status>
-                <midino>0x0D</midino>
+                <midino>0x05</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>rate_temp_down_small</key>
+                <description>PAD: PitchBend-</description>
+                <status>0x90</status>
+                <midino>0x07</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>volume</key>
+                <description>MIDI Learned from 320 messages.</description>
+                <status>0xB0</status>
+                <midino>0x04</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>cue_default</key>
+                <description>CUE+PLAY</description>
+                <status>0x90</status>
+                <midino>0x06</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter2</key>
+                <description>G: EQ Mid</description>
+                <status>0xB0</status>
+                <midino>0x07</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>reverseroll</key>
+                <description>PAD: ReverseRoll</description>
+                <status>0x90</status>
+                <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>rate_temp_up_small</key>
+                <description>PAD: PitchBend+</description>
+                <status>0x80</status>
+                <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter1</key>
+                <description>G: EQ low</description>
+                <status>0xB0</status>
+                <midino>0x06</midino>
                 <options>
                     <normal/>
                 </options>
@@ -74,6 +104,16 @@
                 <description>G: Tempo</description>
                 <status>0xB0</status>
                 <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>LoadSelectedTrack</key>
+                <description>CC: LoadTrack</description>
+                <status>0xB0</status>
+                <midino>0x0D</midino>
                 <options>
                     <normal/>
                 </options>
@@ -100,10 +140,10 @@
             </control>
             <control>
                 <group>[Channel1]</group>
-                <key>reverseroll</key>
-                <description>PAD: ReverseRoll</description>
-                <status>0x90</status>
-                <midino>0x01</midino>
+                <key>LoadSelectedTrack</key>
+                <description>CC: LoadTrack</description>
+                <status>0xB0</status>
+                <midino>0x03</midino>
                 <options>
                     <normal/>
                 </options>
@@ -114,16 +154,6 @@
                 <description>CC: PLAY</description>
                 <status>0xB0</status>
                 <midino>0x0F</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>LoadSelectedTrack</key>
-                <description>CC: LoadTrack</description>
-                <status>0xB0</status>
-                <midino>0x03</midino>
                 <options>
                     <normal/>
                 </options>
@@ -150,6 +180,26 @@
             </control>
             <control>
                 <group>[Channel1]</group>
+                <key>beats_translate_earlier</key>
+                <description>CC: BeatGrid-</description>
+                <status>0xB0</status>
+                <midino>0x11</midino>
+                <options>
+                    <switch/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
+                <key>rate_temp_up_small</key>
+                <description>PAD: PitchBend+</description>
+                <status>0x90</status>
+                <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
                 <key>cue_default</key>
                 <description>CUE+PLAY</description>
                 <status>0x80</status>
@@ -159,73 +209,13 @@
                 </options>
             </control>
             <control>
-                <group>[QuickEffectRack1_[Channel1]]</group>
-                <key>super1</key>
-                <description>G: Filter Super Knob</description>
-                <status>0xB0</status>
-                <midino>0x05</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
                 <group>[Channel1]</group>
-                <key>volume</key>
-                <description>MIDI Learned from 320 messages.</description>
+                <key>cue_default</key>
+                <description>CC: CUE</description>
                 <status>0xB0</status>
-                <midino>0x04</midino>
+                <midino>0x10</midino>
                 <options>
                     <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>rate_temp_up_small</key>
-                <description>PAD: PitchBend+</description>
-                <status>0x80</status>
-                <midino>0x08</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
-                <key>parameter2</key>
-                <description>G: EQ Mid</description>
-                <status>0xB0</status>
-                <midino>0x07</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
-                <key>parameter1</key>
-                <description>G: EQ low</description>
-                <status>0xB0</status>
-                <midino>0x06</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>rate_temp_down_small</key>
-                <description>PAD: PitchBend-</description>
-                <status>0x90</status>
-                <midino>0x07</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>beats_translate_earlier</key>
-                <description>CC: BeatGrid-</description>
-                <status>0xB0</status>
-                <midino>0x11</midino>
-                <options>
-                    <switch/>
                 </options>
             </control>
             <control>
@@ -239,11 +229,21 @@
                 </options>
             </control>
             <control>
+                <group>[EqualizerRack1_[Channel1]_Effect1]</group>
+                <key>parameter3</key>
+                <description>G: EQ High</description>
+                <status>0xB0</status>
+                <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
                 <group>[Channel1]</group>
-                <key>cue_default</key>
-                <description>CUE+PLAY</description>
-                <status>0x90</status>
-                <midino>0x06</midino>
+                <key>reverse</key>
+                <description>CC: Reverse</description>
+                <status>0xB0</status>
+                <midino>0x0B</midino>
                 <options>
                     <normal/>
                 </options>

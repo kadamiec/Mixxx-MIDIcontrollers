@@ -10,10 +10,30 @@
         <controls>
             <control>
                 <group>[Channel2]</group>
-                <key>rate_temp_up_small</key>
-                <description>PAD: PitchBend+</description>
-                <status>0x94</status>
+                <key>reverseroll</key>
+                <description>PAD: ReverseRoll</description>
+                <status>0x84</status>
+                <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
+                <key>parameter3</key>
+                <description>G: EQ High</description>
+                <status>0xB4</status>
                 <midino>0x08</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>reverse</key>
+                <description>CC: Reverse</description>
+                <status>0xB4</status>
+                <midino>0x0B</midino>
                 <options>
                     <normal/>
                 </options>
@@ -30,112 +50,12 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>LoadSelectedTrack</key>
-                <description>CC: LoadTrack</description>
-                <status>0xB4</status>
-                <midino>0x0D</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>rate</key>
-                <description>G: Tempo</description>
-                <status>0xB4</status>
-                <midino>0x01</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>play</key>
-                <description>PAD: PLAY</description>
-                <status>0x84</status>
-                <midino>0x05</midino>
-                <options>
-                    <button/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>cue_set</key>
-                <description>CC: CuePoint</description>
-                <status>0xB4</status>
-                <midino>0x0C</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>reverseroll</key>
-                <description>PAD: ReverseRoll</description>
-                <status>0x94</status>
-                <midino>0x01</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>play</key>
-                <description>CC: PLAY</description>
-                <status>0xB4</status>
-                <midino>0x0F</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[EffectRack1_EffectUnit2_Effect1]</group>
-                <key>meta</key>
-                <description>MIDI Learned from 294 messages.</description>
-                <status>0xB4</status>
-                <midino>0x03</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>rate_temp_down_small</key>
-                <description>PAD: PitchBend-</description>
-                <status>0x84</status>
-                <midino>0x07</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>sync_enabled</key>
-                <description>CC: SYNC</description>
-                <status>0xB4</status>
-                <midino>0x0E</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>cue_default</key>
-                <description>CUE+PLAY</description>
-                <status>0x84</status>
-                <midino>0x06</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>bpm_down_small</key>
+                <key>bpm_up_small</key>
                 <description>MIDI Learned from 1 messages.</description>
                 <status>0x94</status>
-                <midino>0x03</midino>
+                <midino>0x04</midino>
                 <options>
-                    <soft-takeover/>
+                    <normal/>
                 </options>
             </control>
             <control>
@@ -144,6 +64,16 @@
                 <description>G: Filter Super Knob</description>
                 <status>0xB4</status>
                 <midino>0x05</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>rate_temp_down_small</key>
+                <description>PAD: PitchBend-</description>
+                <status>0x94</status>
+                <midino>0x07</midino>
                 <options>
                     <normal/>
                 </options>
@@ -160,10 +90,10 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>rate_temp_up_small</key>
-                <description>PAD: PitchBend+</description>
-                <status>0x84</status>
-                <midino>0x08</midino>
+                <key>cue_default</key>
+                <description>CUE+PLAY</description>
+                <status>0x94</status>
+                <midino>0x06</midino>
                 <options>
                     <normal/>
                 </options>
@@ -180,10 +110,20 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>bpm_up_small</key>
-                <description>MIDI Learned from 1 messages.</description>
+                <key>reverseroll</key>
+                <description>PAD: ReverseRoll</description>
                 <status>0x94</status>
-                <midino>0x04</midino>
+                <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>rate_temp_up_small</key>
+                <description>PAD: PitchBend+</description>
+                <status>0x84</status>
+                <midino>0x08</midino>
                 <options>
                     <normal/>
                 </options>
@@ -200,9 +140,89 @@
             </control>
             <control>
                 <group>[Channel2]</group>
+                <key>rate</key>
+                <description>G: Tempo</description>
+                <status>0xB4</status>
+                <midino>0x01</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>LoadSelectedTrack</key>
+                <description>CC: LoadTrack</description>
+                <status>0xB4</status>
+                <midino>0x0D</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>bpm_down_small</key>
+                <description>MIDI Learned from 1 messages.</description>
+                <status>0x94</status>
+                <midino>0x03</midino>
+                <options>
+                    <soft-takeover/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>cue_set</key>
+                <description>CC: CuePoint</description>
+                <status>0xB4</status>
+                <midino>0x0C</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>play</key>
+                <description>PAD: PLAY</description>
+                <status>0x84</status>
+                <midino>0x05</midino>
+                <options>
+                    <button/>
+                </options>
+            </control>
+            <control>
+                <group>[EffectRack1_EffectUnit2_Effect1]</group>
+                <key>meta</key>
+                <description>MIDI Learned from 294 messages.</description>
+                <status>0xB4</status>
+                <midino>0x03</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>play</key>
+                <description>CC: PLAY</description>
+                <status>0xB4</status>
+                <midino>0x0F</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>sync_enabled</key>
+                <description>CC: SYNC</description>
+                <status>0xB4</status>
+                <midino>0x0E</midino>
+                <options>
+                    <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
                 <key>rate_temp_down_small</key>
                 <description>PAD: PitchBend-</description>
-                <status>0x94</status>
+                <status>0x84</status>
                 <midino>0x07</midino>
                 <options>
                     <normal/>
@@ -220,10 +240,10 @@
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>reverseroll</key>
-                <description>PAD: ReverseRoll</description>
-                <status>0x84</status>
-                <midino>0x01</midino>
+                <key>rate_temp_up_small</key>
+                <description>PAD: PitchBend+</description>
+                <status>0x94</status>
+                <midino>0x08</midino>
                 <options>
                     <normal/>
                 </options>
@@ -232,18 +252,8 @@
                 <group>[Channel2]</group>
                 <key>cue_default</key>
                 <description>CUE+PLAY</description>
-                <status>0x94</status>
+                <status>0x84</status>
                 <midino>0x06</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[EqualizerRack1_[Channel2]_Effect1]</group>
-                <key>parameter3</key>
-                <description>G: EQ High</description>
-                <status>0xB4</status>
-                <midino>0x08</midino>
                 <options>
                     <normal/>
                 </options>
@@ -254,16 +264,6 @@
                 <description>CC: CUE</description>
                 <status>0xB4</status>
                 <midino>0x10</midino>
-                <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>reverse</key>
-                <description>CC: Reverse</description>
-                <status>0xB4</status>
-                <midino>0x0B</midino>
                 <options>
                     <normal/>
                 </options>
